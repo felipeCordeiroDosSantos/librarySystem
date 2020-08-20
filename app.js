@@ -9,9 +9,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-// eslint-disable-next-line import/order
 const passport = require('passport');
-// eslint-disable-next-line import/order
 const session = require('express-session');
 
 require('./auth')(passport);

@@ -1,4 +1,4 @@
-const knex = require('../connectDB');
+const databaseConnection = require('../connectDB');
 
 function addBook(name, author, year, area, edition, publisher) {
   const newBook = {
@@ -12,8 +12,7 @@ function addBook(name, author, year, area, edition, publisher) {
     id_employee: 2,
   };
 
-  // eslint-disable-next-line no-unused-expressions
-  knex.insert(newBook).into('books')
+  databaseConnection.insert(newBook).into('books')
     .then((data) => {
       console.log(data);
     })
@@ -24,8 +23,7 @@ function addBook(name, author, year, area, edition, publisher) {
 }
 
 function listBooks() {
-  // eslint-disable-next-line no-unused-expressions
-  knex.select(['name', 'author', 'year', 'area', 'edition', 'publisher']).table('books')
+  databaseConnection.select(['name', 'author', 'year', 'area', 'edition', 'publisher']).table('books')
     .then((data) => {
       console.log(data);
     })

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const knex = require('../connectDB');
+const databaseConnection = require('../connectDB');
 
 function addEmployee(username, email, password) {
   bcrypt.hash(password, 10, (err, hash) => {
@@ -8,8 +8,8 @@ function addEmployee(username, email, password) {
       email,
       password: hash,
     };
-    // eslint-disable-next-line no-unused-expressions
-    knex.insert(newEmployee).into('employees')
+
+    databaseConnection.insert(newEmployee).into('employees')
       .then((data) => {
         console.log(data);
       })
