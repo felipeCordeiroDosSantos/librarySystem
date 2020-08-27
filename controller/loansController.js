@@ -1,6 +1,6 @@
 const loans = require('../modules/loans');
 
-function addLoan(req, res) {
+function addLoan(req) {
   const { deadline } = req.body;
   const { bookName } = req.body;
   const { customerName } = req.body;
@@ -8,7 +8,7 @@ function addLoan(req, res) {
   loans.addLoan(bookName, customerName, deadline);
 }
 
-function searchLoan(req, res) {
+function searchLoan(req) {
   const { bookName } = req.body;
 
   loans.searchLoan(bookName);

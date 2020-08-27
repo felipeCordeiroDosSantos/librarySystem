@@ -1,6 +1,6 @@
 const books = require('../modules/books');
 
-function bookRegistration(req, res) {
+function bookRegistration(req) {
   const { bookName } = req.body;
   const { authorName } = req.body;
   const { bookRelease } = req.body;
@@ -11,13 +11,12 @@ function bookRegistration(req, res) {
   books.bookRegistration(bookName, authorName, bookRelease, bookGenre, bookEdition, bookPublisher);
 }
 
-function searchBook(req, res) {
+function searchBook(req) {
   const { bookName } = req.body;
-  console.log(bookName);
   books.searchBook(bookName);
 }
 
-function checkMarking(req, res) {
+function checkMarking(req) {
   const { check } = req.body;
   books.checkMarking(check);
 }

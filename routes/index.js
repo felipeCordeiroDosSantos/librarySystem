@@ -1,37 +1,38 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 const books = require('../controller/booksController');
 const customers = require('../controller/customersController');
 const loans = require('../controller/loansController');
 
-router.get('/', (req, res, next) => res.render('login'));
+const router = express.Router();
 
-router.get('/loan', (req, res, next) => res.render('loan'));
+router.get('/', (req, res) => res.render('login'));
 
-router.get('/loanConsultation', (req, res, next) => {
+router.get('/loan', (req, res) => res.render('loan'));
+
+router.get('/loanConsultation', (req, res) => {
   res.render('loanConsultation', {
     loan: loans.getLoan(),
   });
 });
 
-router.get('/customerRegistration', (req, res, next) => res.render('customerRegistration'));
+router.get('/customerRegistration', (req, res) => res.render('customerRegistration'));
 
-router.get('/bookRegistration', (req, res, next) => res.render('bookRegistration'));
+router.get('/bookRegistration', (req, res) => res.render('bookRegistration'));
 
-router.get('/customers', (req, res, next) => {
+router.get('/customers', (req, res) => {
   res.render('customers', {
     customer: customers.getCustomer(),
   });
 });
 
-router.get('/books', (req, res, next) => {
+router.get('/books', (req, res) => {
   res.render('books', {
     book: books.getBook(),
   });
 });
 
-router.get('/updateCustomer', (req, res, next) => res.render('updateCustomer'));
+router.get('/updateCustomer', (req, res) => res.render('updateCustomer'));
 
 router.post('/login', passport.authenticate('local', { successRedirect: '/loan', failureRedirect: '/' }));
 

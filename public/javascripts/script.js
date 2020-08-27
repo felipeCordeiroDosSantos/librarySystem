@@ -1,3 +1,24 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-unused-vars */
+
+function fetchInRoutes(data, route) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+  fetch(route, options)
+    .then((res) => {
+      if (res.status >= 400 && res.status <= 499) {
+        alert('Erro no cliente!');
+      } else if (res.status >= 500 && res.status <= 599) {
+        alert('Erro no servidor!');
+      }
+    });
+}
+
 function setDeadline() {
   const deadline = document.querySelector('#deadline');
 
@@ -41,7 +62,7 @@ function insertDataInTableLoans(loanList) {
   const loan = loanList;
   const dataTable = document.querySelector('#tableLoans');
 
-  for (let i = 0; i < loan.length; i++) {
+  for (let i = 0; i < loan.length; i += 1) {
     const tr = document.createElement('tr');
     dataTable.appendChild(tr);
 
@@ -102,7 +123,7 @@ function searchBook() {
 function checkAvailable() {
   const checkOn = document.querySelector('#available');
 
-  if (checkOn.checked == true) {
+  if (checkOn.checked === true) {
     const check = 0;
     const data = { check };
     const route = '/checkMarking';
@@ -114,7 +135,7 @@ function checkAvailable() {
 function checkUnavailable() {
   const checkOff = document.querySelector('#unavailable');
 
-  if (checkOff.checked == true) {
+  if (checkOff.checked === true) {
     const check = 1;
     const data = { check };
     const route = '/checkMarking';
@@ -127,7 +148,7 @@ function insertDataInTableBooks(booksList) {
   const book = booksList;
   const dataTable = document.querySelector('#tableBooks');
 
-  for (let i = 0; i < book.length; i++) {
+  for (let i = 0; i < book.length; i += 1) {
     const tr = document.createElement('tr');
     dataTable.appendChild(tr);
 
@@ -190,7 +211,7 @@ function searchCustomer() {
 function checkPendingStatus() {
   const checkOff = document.querySelector('#pending');
 
-  if (checkOff.checked == true) {
+  if (checkOff.checked === true) {
     const check = 0;
     const data = { check };
     const route = '/checkMarkingCustomer';
@@ -202,7 +223,7 @@ function checkPendingStatus() {
 function checkBlockedStatus() {
   const checkOff = document.querySelector('#blocked');
 
-  if (checkOff.checked == true) {
+  if (checkOff.checked === true) {
     const check = 1;
     const data = { check };
     const route = '/checkMarkingCustomer';
@@ -212,11 +233,11 @@ function checkBlockedStatus() {
 }
 
 function insertDataInTableCustomer(customersList) {
-  console.log(customersList)
+  console.log(customersList);
   const customer = customersList;
   const dataTable = document.querySelector('#tableCustomers');
 
-  for (let i = 0; i < customer.length; i++) {
+  for (let i = 0; i < customer.length; i += 1) {
     const tr = document.createElement('tr');
     dataTable.appendChild(tr);
 
@@ -238,22 +259,4 @@ function insertDataInTableCustomer(customersList) {
     td3.appendChild(telefone);
     td4.appendChild(email);
   }
-}
-
-function fetchInRoutes(data, route) {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  };
-  fetch(route, options)
-    .then((res) => {
-      if (res.status >= 400 && res.status <= 499) {
-        alert('Erro no cliente!');
-      } else if (res.status >= 500 && res.status <= 599) {
-        alert('Erro no servidor!');
-      }
-    });
 }

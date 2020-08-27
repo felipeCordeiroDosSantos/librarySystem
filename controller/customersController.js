@@ -1,6 +1,6 @@
 const customers = require('../modules/customers');
 
-function customerRegistration(req, res) {
+function customerRegistration(req) {
   const { customerName } = req.body;
   const { customerCPF } = req.body;
   const { customerEmail } = req.body;
@@ -9,13 +9,13 @@ function customerRegistration(req, res) {
   customers.customerRegistration(customerName, customerEmail, customerCPF, customerTelephone);
 }
 
-function searchCustomer(req, res) {
+function searchCustomer(req) {
   const { customerName } = req.body;
 
   customers.searchCustomer(customerName);
 }
 
-function checkMarkingCustomer(req, res) {
+function checkMarkingCustomer(req) {
   const { check } = req.body;
   customers.checkMarkingCustomer(check);
 }
