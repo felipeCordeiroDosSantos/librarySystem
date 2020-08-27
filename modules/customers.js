@@ -1,13 +1,13 @@
 const databaseConnection = require('../connectDB');
 
-function addCustomer(name, email, cpf, telephone) {
+function customerRegistration(name, email, cpf, telephone) {
   const newCustomer = {
     name,
     email,
     cpf,
     telephone,
-    status: 0,
-    id_employee: 1,
+    status: 1,
+    id_employee: 2,
   };
 
   databaseConnection.insert(newCustomer).into('customers')
@@ -17,7 +17,9 @@ function addCustomer(name, email, cpf, telephone) {
     .catch((error) => {
       console.log(error);
     })
-    .then;
+    .then(() => {
+      console.log('test');
+    });
 }
 
 function updateCustomer(id, email, telephone) {
@@ -28,22 +30,51 @@ function updateCustomer(id, email, telephone) {
     .catch((error) => {
       console.log(error);
     })
-    .then;
+    .then(() => {
+      console.log('test');
+    });
 }
 
-function listCustomers() {
-  databaseConnection.select(['name', 'email', 'cpf', 'telephone']).table('customers')
+let customer = [];
+
+function searchCustomer(customerName) {
+  databaseConnection('customers').where('name', 'like', `%${customerName}%`)
     .then((data) => {
       console.log(data);
+      customer = [];
+      customer = data;
     })
     .catch((error) => {
       console.log(error);
     })
-    .then;
+    .then(() => {
+      console.log(customer);
+    });
+}
+
+function checkMarkingCustomer(status) {
+  databaseConnection('customers').where('status', 'like', `%${status}%`)
+    .then((data) => {
+      console.log(data);
+      customer = [];
+      customer = data;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then(() => {
+      console.log(customer);
+    });
+}
+
+function getCustomer() {
+  return customer;
 }
 
 module.exports = {
-  addCustomer,
+  customerRegistration,
   updateCustomer,
-  listCustomers,
+  searchCustomer,
+  getCustomer,
+  checkMarkingCustomer,
 };

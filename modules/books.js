@@ -1,6 +1,6 @@
 const databaseConnection = require('../connectDB');
 
-function addBook(name, author, year, area, edition, publisher) {
+function bookRegistration(name, author, year, area, edition, publisher) {
   const newBook = {
     name,
     author,
@@ -8,7 +8,7 @@ function addBook(name, author, year, area, edition, publisher) {
     area,
     edition,
     publisher,
-    status: 0,
+    status: 1,
     id_employee: 2,
   };
 
@@ -19,21 +19,50 @@ function addBook(name, author, year, area, edition, publisher) {
     .catch((error) => {
       console.log(error);
     })
-    .then;
+    .then(() => {
+      console.log('test');
+    });
 }
 
-function listBooks() {
-  databaseConnection.select(['name', 'author', 'year', 'area', 'edition', 'publisher']).table('books')
+let book = [];
+
+function searchBook(bookName) {
+  databaseConnection('books').where('name', 'like', `%${bookName}%`)
     .then((data) => {
-      console.log(data);
+      console.log(data[0].id);
+      book = [];
+      book = data;
     })
     .catch((error) => {
       console.log(error);
     })
-    .then;
+    .then(() => {
+      console.log(book);
+    });
+}
+
+function checkMarking(status) {
+  databaseConnection('books').where('status', 'like', `%${status}%`)
+    .then((data) => {
+      console.log(data);
+      book = [];
+      book = data;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then(() => {
+      console.log(book);
+    });
+}
+
+function getBook() {
+  return book;
 }
 
 module.exports = {
-  addBook,
-  listBooks,
+  bookRegistration,
+  searchBook,
+  checkMarking,
+  getBook,
 };

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>loan</title>
+    <title>ls</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <h1>Empréstimo</h1>
+    <h1>SB</h1>
     <div class="vertical-menu">
         <a href="/loan" class="active">Empréstimo</a>
         <a href="/loanConsultation">Consulta empréstimo</a>
@@ -14,40 +16,30 @@
         <a href="/customers">Clientes</a>
         <a href="/books">Livros</a>
     </div>
-    <div>
+    <div class="bookInput">
         <h4>Livros</h4>
-        <input type="search" name="" id="">
+        <input type="search" id="bookName">
         <button>Search</button>
-        <table border="1">
-            <tr>
-                <th>Nome</th>
-                <th>id</th>
-            </tr>
-            <tr>
-                <td>nome1</td>
-                <td>id1</td>
-            </tr>
-        </table>
     </div>
-    <div>
+    <div class="customerInput">
         <h4>Clientes</h4>
-        <input type="search" name="" id="">
+        <input type="search" id="customerName" onchange="setDeadline()">
         <button>Search</button>
-        <table border="1">
-            <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-            </tr>
-            <tr>
-                <td>nome1</td>
-                <td>CPF1</td>
-            </tr>
-        </table>
     </div>
-    <div>
+    <div class="dateInput">
         <h4>Data de devolução</h4>
-        <input type="date" name="" id="">
-        <button>Confirmar</button>
+        <input type="date" id="deadline">
+        <button onclick="addLoan()">Confirmar</button>
     </div>
+    <p id="result"></p>
+    <script>
+      $('#bookName').keyup(() => {
+        let bookName = $('#bookName').val();
+        $.post('/searchBook', { bookName }, (data) => {
+          console.log(data);
+          $('#result').html(data);
+        });
+      });
+    </script>
   </body>
 </html>

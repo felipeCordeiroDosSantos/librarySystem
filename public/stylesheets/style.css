@@ -24,6 +24,77 @@ a {
 }
 
 .vertical-menu a.active {
-  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  background-color: blue; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+.registrationsInputs {
+  position: absolute;
+  top: 100px;
+  left: 500px;
+}
+
+.bookInput {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+  
+.customerInput {
+  position: absolute;
+  top: 100px;
+  left: 675px;
+}
+  
+.dateInput {
+  position: absolute;
+  top: 100px;
+  left: 1000px;
+}
+
+.customersInput {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+
+.booksInput {
+  position: absolute;
+  top: 100px;
+  left: 600px;
+}
+
+.dataTable {
+  position: absolute;
+  top: 210px;
+  left: 350px;
+}
+
+.customersSearch {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+  
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+
+.table th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: blue;
   color: white;
 }

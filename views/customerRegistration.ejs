@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>loan</title>
+    <title>ls</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/script.js"></script>
   </head>
   <body>
-    <h1>Cadastro de clientes</h1>
+    <h1>SB</h1>
     <div class="vertical-menu">
         <a href="/loan">Empréstimo</a>
         <a href="/loanConsultation">Consulta empréstimo</a>
@@ -14,16 +15,16 @@
         <a href="/customers">Clientes</a>
         <a href="/books">Livros</a>
     </div>
-    <div>
+    <div class="registrationsInputs">
       <h4>Nome</h4>
-      <input type="text" name="" id="">
+      <input type="text" id="customerName">
       <h4>CPF</h4>
-      <input type="number" name="" id="">
+      <input type="number" name="" id="customerCPF">
       <h4>Email</h4>
-      <input type="email" name="" id="">
+      <input type="email" name="" id="customerEmail">
       <h4>Telefone</h4>
-      <input type="number" name="" id="">
-      <button>Confirmar</button>
+      <input type="number" name="" id="customerTelephone">
+      <button onclick="customerRegistration()">Confirmar</button>
     </div>
   </body>
 </html>

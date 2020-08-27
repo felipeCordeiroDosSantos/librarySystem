@@ -16,7 +16,9 @@ function addEmployee(username, email, password) {
       .catch((error) => {
         console.log(error);
       })
-      .then;
+      .then(() => {
+        console.log('test');
+      });
   });
 }
 
