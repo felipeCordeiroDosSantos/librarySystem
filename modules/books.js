@@ -8,7 +8,7 @@ function bookRegistration(name, author, year, area, edition, publisher) {
     area,
     edition,
     publisher,
-    status: 1,
+    status: 0,
     id_employee: 2,
   };
 

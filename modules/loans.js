@@ -25,7 +25,16 @@ function loanConfirm(deadline, idBook, idCustomer) {
           console.log(error);
         })
         .then(() => {
-          console.log('test');
+          databaseConnection.where({ id: idCustomer }).update({ status: 1 }).table('customers')
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+            .then(() => {
+              console.log('test');
+            });
         });
     });
 }
@@ -57,7 +66,9 @@ function addLoan(bookName, customerName, deadline) {
         });
     });
 }
+
 let loan = [];
+
 function searchLoan(book) {
   let bookId;
   let idbook;
@@ -66,6 +77,8 @@ function searchLoan(book) {
   let customerName;
   let customerCPF;
   let deadline;
+  let idLoan;
+  let loanStatus;
   databaseConnection('books').where('name', 'like', `%${book}%`)
     .then((data) => {
       console.log(data);
@@ -84,6 +97,8 @@ function searchLoan(book) {
           deadline = data[0].deadline;
           customerId = data[0].id_customer;
           idbook = data[0].id_book;
+          idLoan = data[0].id;
+          loanStatus = data[0].status;
         })
         .catch((error) => {
           console.log(error);
@@ -91,6 +106,7 @@ function searchLoan(book) {
         .then(() => {
           console.log(deadline);
           console.log(customerId);
+          console.log(idLoan);
           databaseConnection('customers').where('id', 'like', `%${customerId}%`)
             .then((data) => {
               console.log(data);
@@ -107,9 +123,10 @@ function searchLoan(book) {
                 customerName,
                 customerCPF,
                 deadline,
+                idLoan,
               };
               loan = [];
-              if (bookId === idbook) {
+              if (bookId === idbook && loanStatus === 0) {
                 loan.push(data);
                 console.log(data);
                 console.log(loan);
@@ -123,22 +140,44 @@ function getLoan() {
   return loan;
 }
 
-function loanReturn(id, delay, status) {
-  databaseConnection.where({ id }).update({ delay, status }).table('loans')
+function returnLoan(id) {
+  let idBook;
+  let idCustomer;
+  databaseConnection.where({ id }).update({ status: 1 }).table('loans')
     .then((data) => {
       console.log(data);
+      idBook = data[0].id_book;
+      idCustomer = data[0].id_customer;
     })
     .catch((error) => {
       console.log(error);
     })
     .then(() => {
-      console.log('test');
+      databaseConnection.where({ id: idBook }).update({ status: 0 }).table('books')
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          databaseConnection.where({ id: idCustomer }).update({ status: 0 }).table('customers')
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+            .then(() => {
+              console.log('test');
+            });
+        });
     });
 }
 
 module.exports = {
   addLoan,
-  loanReturn,
+  returnLoan,
   searchLoan,
   getLoan,
 };

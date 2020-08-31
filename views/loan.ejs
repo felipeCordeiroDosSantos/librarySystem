@@ -20,6 +20,7 @@
         <h4>Livros</h4>
         <input type="search" id="bookName">
         <button>Search</button>
+        <p id="result"></p>
     </div>
     <div class="customerInput">
         <h4>Clientes</h4>
@@ -31,11 +32,10 @@
         <input type="date" id="deadline">
         <button onclick="addLoan()">Confirmar</button>
     </div>
-    <p id="result"></p>
     <script>
       $('#bookName').keyup(() => {
         let bookName = $('#bookName').val();
-        $.post('/searchBook', { bookName }, (data) => {
+        $.post('/bookName', { bookName }, (data) => {
           console.log(data);
           $('#result').html(data);
         });

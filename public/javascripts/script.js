@@ -58,6 +58,13 @@ function searchLoan() {
   fetchInRoutes(data, route);
 }
 
+function returnLoan(idLoan) {
+  const id = idLoan;
+  const data = { id };
+  const route = '/returnLoan';
+
+  fetchInRoutes(data, route);
+}
 function insertDataInTableLoans(loanList) {
   const loan = loanList;
   const dataTable = document.querySelector('#tableLoans');
@@ -73,6 +80,7 @@ function insertDataInTableLoans(loanList) {
     const td5 = document.createElement('td');
     const button = document.createElement('button');
     button.setAttribute('id', `button${i}`);
+    button.setAttribute('onclick', `returnLoan(${loan[0].idLoan})`);
     button.innerHTML = 'Devolver';
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -212,9 +220,9 @@ function checkPendingStatus() {
   const checkOff = document.querySelector('#pending');
 
   if (checkOff.checked === true) {
-    const check = 0;
+    const check = 1;
     const data = { check };
-    const route = '/checkMarkingCustomer';
+    const route = '/checkPendingStatus';
 
     fetchInRoutes(data, route);
   }
@@ -226,7 +234,7 @@ function checkBlockedStatus() {
   if (checkOff.checked === true) {
     const check = 1;
     const data = { check };
-    const route = '/checkMarkingCustomer';
+    const route = '/checkBlockedStatus';
 
     fetchInRoutes(data, route);
   }

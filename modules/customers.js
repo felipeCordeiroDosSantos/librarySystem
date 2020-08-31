@@ -7,6 +7,7 @@ function customerRegistration(name, email, cpf, telephone) {
     cpf,
     telephone,
     status: 1,
+    blocked_status: 0,
     id_employee: 2,
   };
 
@@ -67,6 +68,21 @@ function checkMarkingCustomer(status) {
     });
 }
 
+function checkBlockedStatus(status) {
+  databaseConnection('customers').where('blocked_status', 'like', `%${status}%`)
+    .then((data) => {
+      console.log(data);
+      customer = [];
+      customer = data;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then(() => {
+      console.log(customer);
+    });
+}
+
 function getCustomer() {
   return customer;
 }
@@ -77,4 +93,5 @@ module.exports = {
   searchCustomer,
   getCustomer,
   checkMarkingCustomer,
+  checkBlockedStatus,
 };

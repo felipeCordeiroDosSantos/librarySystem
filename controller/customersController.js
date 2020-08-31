@@ -1,10 +1,12 @@
 const customers = require('../modules/customers');
 
 function customerRegistration(req) {
-  const { customerName } = req.body;
-  const { customerCPF } = req.body;
-  const { customerEmail } = req.body;
-  const { customerTelephone } = req.body;
+  const {
+    customerName,
+    customerCPF,
+    customerEmail,
+    customerTelephone,
+  } = req.body;
 
   customers.customerRegistration(customerName, customerEmail, customerCPF, customerTelephone);
 }
@@ -20,6 +22,11 @@ function checkMarkingCustomer(req) {
   customers.checkMarkingCustomer(check);
 }
 
+function checkBlockedStatus(req) {
+  const { check } = req.body;
+  customers.checkBlockedStatus(check);
+}
+
 function getCustomer() {
   return customers.getCustomer();
 }
@@ -29,4 +36,5 @@ module.exports = {
   searchCustomer,
   getCustomer,
   checkMarkingCustomer,
+  checkBlockedStatus,
 };

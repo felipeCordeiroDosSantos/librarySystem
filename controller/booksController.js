@@ -1,12 +1,14 @@
 const books = require('../modules/books');
 
 function bookRegistration(req) {
-  const { bookName } = req.body;
-  const { authorName } = req.body;
-  const { bookRelease } = req.body;
-  const { bookGenre } = req.body;
-  const { bookEdition } = req.body;
-  const { bookPublisher } = req.body;
+  const {
+    bookName,
+    authorName,
+    bookRelease,
+    bookGenre,
+    bookEdition,
+    bookPublisher,
+  } = req.body;
 
   books.bookRegistration(bookName, authorName, bookRelease, bookGenre, bookEdition, bookPublisher);
 }

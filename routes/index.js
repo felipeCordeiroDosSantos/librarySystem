@@ -3,6 +3,7 @@ const passport = require('passport');
 const books = require('../controller/booksController');
 const customers = require('../controller/customersController');
 const loans = require('../controller/loansController');
+const db = require('../connectDB');
 
 const router = express.Router();
 
@@ -44,12 +45,35 @@ router.post('/searchCustomer', customers.searchCustomer);
 
 router.post('/searchBook', books.searchBook);
 
-router.post('/checkMarkingCustomer', customers.checkMarkingCustomer);
+router.post('/checkPendingStatus', customers.checkMarkingCustomer);
+
+router.post('/checkBlockedStatus', customers.checkBlockedStatus);
+
+router.post('/returnLoan', loans.returnLoan);
 
 router.post('/checkMarking', books.checkMarking);
 
 router.post('/customerRegistration', customers.customerRegistration);
 
 router.post('/bookRegistration', books.bookRegistration);
+
+router.post('/bookName', (req, res) => {
+  let bn;
+  const { bookName } = req.body;
+  console.log(bookName);
+  db('books').where('name', 'like', `%${bookName}%`)
+    .then((data) => {
+      bn = [];
+      for (let i = 0; i < data.length; i += 1) {
+        bn.push(data[i].name);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then(() => {
+      res.jsonp(bn);
+    });
+});
 
 module.exports = router;

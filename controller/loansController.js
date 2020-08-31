@@ -1,9 +1,11 @@
 const loans = require('../modules/loans');
 
 function addLoan(req) {
-  const { deadline } = req.body;
-  const { bookName } = req.body;
-  const { customerName } = req.body;
+  const {
+    deadline,
+    bookName,
+    customerName,
+  } = req.body;
 
   loans.addLoan(bookName, customerName, deadline);
 }
@@ -14,6 +16,12 @@ function searchLoan(req) {
   loans.searchLoan(bookName);
 }
 
+function returnLoan(req) {
+  const { id } = req.body;
+
+  loans.returnLoan(id);
+}
+
 function getLoan() {
   return loans.getLoan();
 }
@@ -22,4 +30,5 @@ module.exports = {
   addLoan,
   searchLoan,
   getLoan,
+  returnLoan,
 };
