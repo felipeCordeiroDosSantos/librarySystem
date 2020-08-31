@@ -23,6 +23,7 @@ module.exports = (passport) => {
     passwordField: 'password',
   }, ((username, password, done) => {
     databaseConnection('employees').where({ username }).first()
+      // eslint-disable-next-line consistent-return
       .then((user) => {
         if (!user) {
           return done(null, false);

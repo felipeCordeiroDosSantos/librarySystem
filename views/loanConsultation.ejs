@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>loan</title>
+    <title>ls</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/script.js"></script>
+    <script type="text/javascript">
+      window.onload = () => {
+        insertDataInTableLoans(JSON.parse('<%- JSON.stringify(loan) %>'))
+      }
+    </script>
   </head>
   <body>
-    <h1>Consulta empréstimo</h1>
+    <h1>SB</h1>
     <div class="vertical-menu">
         <a href="/loan">Empréstimo</a>
         <a href="/loanConsultation" class="active">Consulta empréstimo</a>
@@ -14,31 +20,25 @@
         <a href="/customers">Clientes</a>
         <a href="/books">Livros</a>
     </div>
-    <div>
-      <h4>Clientes</h4>
-      <input type="search" name="" id="">
+    <div class="customersInput">
       <h4>Livros</h4>
-      <input type="search" name="" id="">
-      <button>Search</button>
+      <input type="search" id="bookName">
+      <button onclick="searchLoan()">Search</button>
       <br>
       <input type="checkbox" name="" id="">
       <label for="">No prazo</label>
       <input type="checkbox" name="" id="">
       <label for="">Atrasado</label>
-      <table border="1">
+
+    </div>
+    <div class="dataTable">
+      <table border="1" id="tableLoans" class="table">
         <tr>
           <th>Livros</th>
           <th>Cliente</th>
           <th>CPF</th>
           <th>Data de devolução</th>
           <th>Devolução</th>
-        </tr>
-        <tr>
-          <td>livros1</td>
-          <td>cliente1</td>
-          <td>cfp1</td>
-          <td>data1</td>
-          <td><button>devolver1</button></td>
         </tr>
       </table>
     </div>

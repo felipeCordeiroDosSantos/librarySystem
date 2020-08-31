@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>loan</title>
+    <title>ls</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/script.js"></script>
   </head>
   <body>
-    <h1>Cadastro de livros</h1>
+    <h1>SB</h1>
     <div class="vertical-menu">
         <a href="/loan">Empréstimo</a>
         <a href="/loanConsultation">Consulta empréstimo</a>
@@ -14,20 +15,20 @@
         <a href="/customers">Clientes</a>
         <a href="/books">Livros</a>
     </div>
-    <div>
+    <div class="registrationsInputs">
         <h4>Nome</h4>
-        <input type="text" name="" id="">
+        <input type="text" id="bookName">
         <h4>Autor</h4>
-        <input type="text" name="" id="">
+        <input type="text" id="authorName">
         <h4>Data de lançamento</h4>
-        <input type="date" name="" id="">
+        <input type="date" id="bookRelease">
         <h4>Area/Genero</h4>
-        <input type="text" name="" id="">
+        <input type="text" id="bookGenre">
         <h4>Edição</h4>
-        <input type="text" name="" id="">
+        <input type="text" id="bookEdition">
         <h4>Editora</h4>
-        <input type="text" name="" id="">
-        <button>Confirmar</button>
+        <input type="text" id="bookPublisher">
+        <button onclick="bookRegistration()">Confirmar</button>
     </div>
   </body>
 </html>

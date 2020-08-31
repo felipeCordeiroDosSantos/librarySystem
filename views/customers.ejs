@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>loan</title>
+    <title>ls</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/script.js"></script>
+    <script type="text/javascript">
+      window.onload = () => {
+        insertDataInTableCustomer(JSON.parse('<%- JSON.stringify(customer) %>'))
+      }
+    </script>
   </head>
   <body>
-    <h1>Clientes</h1>
+    <h1>SB</h1>
     <div class="vertical-menu">
         <a href="/loan">Empréstimo</a>
         <a href="/loanConsultation">Consulta empréstimo</a>
@@ -14,27 +20,23 @@
         <a href="/customers"class="active">Clientes</a>
         <a href="/books">Livros</a>
     </div>
-    <div>
+    <div class="customersSearch">
       <h4>Clientes</h4>
-      <input type="search" name="" id="">
-      <button>Pesquisar</button>
+      <input type="search" id="customerName">
+      <button onclick="searchCustomer()">Pesquisar</button>
       <br>
-      <input type="checkbox" name="" id="">
+      <input type="checkbox" id="pending" onclick="checkPendingStatus()">
       <label for="">Pendente</label>
-      <input type="checkbox" name="" id="">
+      <input type="checkbox" id="blocked" onclick="checkBlockedStatus()">
       <label for="">Bloqueado</label>
-      <table border="1">
+      <br>
+      <br>
+      <table border="1" id="tableCustomers" class="table">
         <tr>
           <th>Cliente</th>
           <th>CPF</th>
           <th>Telefone</th>
           <th>Email</th>
-        </tr>
-        <tr>
-          <td>cliente1</td>
-          <td>cpf1</td>
-          <td>telefone1</td>
-          <td>email1</td>
         </tr>
       </table>
       <a href="/updateCustomer">Atualizar dados de Cliente</a>
